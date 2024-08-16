@@ -1,0 +1,38 @@
+1. ¿Qué propósito cumple el archivo main.ts en un proyecto NestJS y por qué es crucial en la configuración inicial?
+R/ Este es el archivo de entrada de la aplicación. este es el archivo que llama el módulo de la app y levanta el servidor con esta configuración que trae el módulo. Posteriormente, asigna un puerto para levantar el servidor.
+
+2. ¿Qué diferencia existe entre app.module.ts y app.controller.ts? ¿Cómo se relacionan estos archivos con la modularidad y la estructura de la aplicación?
+R/ El "app.module.ts" es el que agrupa y compila todos los módulos, controladores y proveedores de la aplicación, pero este no maneja solicitudes realizadas a la aplicación y su respuesta. El encargado de realizar esta tarea es el "app.controller.ts", quien además se encarga de interactuar con los servicios de la aplicación.
+
+3. ¿Por qué crees que es importante modularizar la aplicación separando funcionalidades en diferentes módulos?
+R/ Porque esto hace la aplicación más modular, escalable y mantenible. Que sea modular y escalable significa que la integración de nuevas funcionalidades al código es relativamente sencilla, puesto que la separación de responsabilidades de las capas de la aplicación está claramente definida. Y que sea mantenible significa que encontrar errores y corregirlos es mucho más sencillo precisamente por la arquitectura y separación de responsabilidades tan clara.
+
+4. ¿Cómo crees que afecta la modularidad al mantenimiento y escalabilidad de la aplicación?
+R/ Esto lo respondí en la pregunta anterior, pero la modularidad de una aplicación afecta de manera muy positiva estas características.
+
+5. Despues de crear los archivos de los módulos, ¿qué archivos se generan y cómo se relacionan con los módulos creados?
+R/ Estos módulos creados están asociados a un recurso o entidad de la aplicación, y son llamados desde el archivo de módulos principal, que es "app.module.ts"
+
+6. ¿Qué sucede si defines incorrectamente un decorador en un controlador? ¿Cómo afecta esto a la funcionalidad del endpoint?
+R/ El endpoint arrojaría error, o aún más peligroso, la petición funcionaría sin errores, pero se manejaría de manera inadecuada. Por ejemplo, si a un endpoint con un controlador con post no se le pasara el decorador @body() de manera adecuada, la información enviada por el cuerpo desde el cliente no se le estaría pasando al controlador, creando un error al crear el registro en la base de datos, puesto que no hay información alguna para insertar en la entidad.
+
+7. ¿Por qué es importante manejar rutas dinámicas (por ejemplo, @Get(':id')) en aplicaciones que interactúan con bases de datos?
+R/ Porque el cliente puede editar, eliminar o consultar un registro específico de una entidad. Con la ruta dinámica, el cliente puede elegir que registro leer o afectar en específico.
+
+8. ¿Qué ventajas tiene manejar la lógica de negocio en servicios en lugar de controladores?
+R/ Hay más separación de responsabilidades, puesto que el controlador se deja solo con la responsabilidad de recibir y responder a la petición, mientras que el servicio se encarga de la lógica de negocio. Esto permite una aplicación más mantenible, puesto que permite un control y depuración de errores más fácil.
+
+9. ¿Cómo se relaciona la inyección de dependencias con la modularidad y la capacidad de prueba de la aplicación?
+R/ La inyección de dependencias consiste en que las dependencias de un componente o clase no se crean dentro del componente si no que se crean por fuera y luego se inyectan para ser utilizadas. De esta manera los componentes/clases de la aplicación son independizados y por lo tanto más reutiliables. De esta manera la aplicación se vuelve más modular.
+
+10. ¿Por qué es crucial validar los datos de entrada en una aplicación que maneja transacciones financieras?
+R/ Entre otras cosas, por la seguridad. La empresa dueña de la aplicación debe asegurarse de que los clientes no puedan insertar información indebida o maliciosa que pueda exponer información sensible o incluso causar errores indeseados en la aplicación.
+
+11. ¿Qué podría suceder si un decorador está mal colocado o si no se aplican los pipes correctamente?
+R/ Podría suceder que la aplicación se reviente, o que haya una brecha de seguridad, porque no se están validando los datos ingresados por el cliente de la manera correcta.
+
+12. ¿Cómo impacta el manejo adecuado de excepciones en la experiencia del usuario y en la seguridad de la aplicación?
+R/ Mejora la experiencia del usuario porque este puede identificar que debe cambiar en su petición para hacerla de forma correcta y que no siga saliendo el error. Y la seguridad de la aplicación también mejora puesto que la aplicación se protege de comportamientos indeseados.
+
+13. ¿Por qué es importante tener un manejo centralizado de excepciones en una aplicación NestJS?
+R/ Porque hace la aplicación más mantenible y escalable y el código queda mejor organizado.
